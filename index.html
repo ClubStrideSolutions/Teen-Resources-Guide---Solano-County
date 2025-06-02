@@ -150,7 +150,7 @@
         }
 
         .category-content.show {
-            max-height: 2000px;
+            max-height: 3000px;
             padding: 20px;
             transition: max-height 0.5s ease-in;
         }
@@ -211,12 +211,16 @@
         .hidden {
             display: none;
         }
+
+        strong {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1 class="lang-title">Teen Resources Guide - Solano County</h1>
+            <h1 id="page-title">Teen Resources Guide - Solano County</h1>
             <div class="controls">
                 <input type="text" class="search-box" placeholder="Search resources..." id="searchBox">
                 <select class="lang-selector" id="langSelector">
@@ -231,293 +235,1062 @@
     </header>
 
     <div class="container">
-        <div class="crisis-banner">
-            <span class="lang-crisis">🆘 CRISIS? Call 988 or text "COURAGE" to 741741 - Available 24/7</span>
+        <div class="crisis-banner" id="crisis-banner">
+            <!-- Crisis text will be inserted here -->
         </div>
 
         <div class="quick-access">
-            <h3 class="lang-quick">Quick Access</h3>
-            <p class="lang-quick-desc">Free services for teens ages 13-18 in Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, and Rio Vista</p>
+            <h3 id="quick-title">Quick Access</h3>
+            <p id="quick-desc">Free services for teens ages 13-18 in Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, and Rio Vista</p>
         </div>
 
         <div id="categories">
-            <!-- Crisis Resources -->
-            <div class="category" data-category="crisis">
-                <div class="category-header" onclick="toggleCategory('crisis')">
-                    <h2><span class="category-icon">🆘</span> <span class="lang-crisis-title">Crisis Resources (24/7)</span></h2>
-                    <span class="toggle-icon" id="toggle-crisis">▼</span>
-                </div>
-                <div class="category-content" id="content-crisis">
-                    <div class="service-item">
-                        <h3>Mental Health Crisis</h3>
-                        <p><strong>988 Suicide & Crisis Lifeline</strong>: Call or text 988 (free, confidential, 240+ languages)</p>
-                        <p><strong>Solano County Mobile Crisis Unit</strong>: (707) 806-0866</p>
-                        <p><strong>Crisis Text Line</strong>: Text "COURAGE" to 741741</p>
-                        <p><strong>Trevor Project (LGBTQ+)</strong>: 1-866-488-7386 or text START to 678-678</p>
-                        <p><strong>Crisis Walk-In</strong>: 2101 Courage Drive, Fairfield</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Emergency Services</h3>
-                        <p><strong>911</strong>: Life-threatening emergencies</p>
-                        <p><strong>California Youth Crisis Line</strong>: 1-800-843-5200</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Education Support -->
-            <div class="category" data-category="education">
-                <div class="category-header" onclick="toggleCategory('education')">
-                    <h2><span class="category-icon">📚</span> <span class="lang-education-title">Education Support Services</span></h2>
-                    <span class="toggle-icon" id="toggle-education">▼</span>
-                </div>
-                <div class="category-content" id="content-education">
-                    <div class="service-item">
-                        <h3>Free Online Tutoring - County Wide</h3>
-                        <p><strong>Solano County Library - Brainfuse HelpNow</strong></p>
-                        <p>Hours: Daily 1:00 PM - 10:00 PM</p>
-                        <p>Phone: 1-866-572-7587</p>
-                        <p>Services: Live tutoring, 24/7 Writing Lab, test prep, homework help</p>
-                        <p>Languages: English and Spanish tutors</p>
-                        <p>Special: FAFSA help Mon-Thu 11:00 AM - 8:00 PM</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Alternative Education - SCOE</h3>
-                        <p><strong>Main Office</strong>: 5100 Business Center Drive, Fairfield</p>
-                        <p>Phone: (707) 399-4400</p>
-                        <p>Programs: Golden Hills Community School, Juvenile Court Schools, E2E (ages 16-24)</p>
-                        <p>Cost: Free</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>City-Specific Programs</h3>
-                        <p><strong>Vallejo</strong>: John Finney Educational Complex - 1347 Amador St, (707) 556-8670</p>
-                        <p><strong>Fairfield</strong>: Adult School - 900 Travis Road, (707) 421-4155</p>
-                        <p><strong>Vacaville</strong>: Boys & Girls Club - 200 Keith Way, homework help</p>
-                        <p><strong>Benicia</strong>: Adult School - 350 East K Street, (707) 747-8367</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Training -->
-            <div class="category" data-category="jobs">
-                <div class="category-header" onclick="toggleCategory('jobs')">
-                    <h2><span class="category-icon">💼</span> <span class="lang-jobs-title">Job Training & Employment</span></h2>
-                    <span class="toggle-icon" id="toggle-jobs">▼</span>
-                </div>
-                <div class="category-content" id="content-jobs">
-                    <div class="service-item">
-                        <h3>Work Permits (Required under 18)</h3>
-                        <p>1. Get Form B1-1 from school office</p>
-                        <p>2. Complete with parent and employer</p>
-                        <p>3. Submit to school for approval</p>
-                        <p>Cost: FREE</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Workforce Development Board</h3>
-                        <p><strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588</p>
-                        <p><strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414</p>
-                        <p>Services: Resume help, interview prep, job placement</p>
-                        <p>Ages: 14-24, Cost: FREE</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Solano Community College</h3>
-                        <p>Career counseling, technical training</p>
-                        <p>Programs: Cosmetology, Aviation, Biotechnology</p>
-                        <p>High school students can take classes</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Health Services -->
-            <div class="category" data-category="health">
-                <div class="category-header" onclick="toggleCategory('health')">
-                    <h2><span class="category-icon">🏥</span> <span class="lang-health-title">Health Services</span></h2>
-                    <span class="toggle-icon" id="toggle-health">▼</span>
-                </div>
-                <div class="category-content" id="content-health">
-                    <div class="service-item">
-                        <h3>STI Testing (No parent permission needed if 12+)</h3>
-                        <p><strong>Vallejo Planned Parenthood</strong>: 365 Tuolumne St, (707) 643-4545</p>
-                        <p><strong>Fairfield Planned Parenthood</strong>: 1325 Travis Blvd #C, (707) 429-8855</p>
-                        <p><strong>Vacaville Family Health</strong>: 1119 E Monte Vista Ave, (707) 469-4640</p>
-                        <p>All locations: Sliding scale fees, walk-ins welcome</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Mobile Health Unit</h3>
-                        <p>Free STI testing throughout county</p>
-                        <p>Contact: (707) 784-8600</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Food Resources -->
-            <div class="category" data-category="food">
-                <div class="category-header" onclick="toggleCategory('food')">
-                    <h2><span class="category-icon">🍽️</span> <span class="lang-food-title">Food Resources</span></h2>
-                    <span class="toggle-icon" id="toggle-food">▼</span>
-                </div>
-                <div class="category-content" id="content-food">
-                    <div class="service-item">
-                        <h3>Teen-Friendly (No Adult Required)</h3>
-                        <p><strong>Vallejo - Faith Food Fridays</strong>: 826 Solano Ave</p>
-                        <p>Fridays 10am-4pm, NO requirements</p>
-                        <p><strong>Fairfield PAL Teen Center</strong>: TEEN-ONLY Food Pantry</p>
-                        <p>2nd & 4th Friday, 4:30-6:30pm, Student ID required</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>College Food Pantries</h3>
-                        <p>Solano Community College - Fairfield, Vallejo, Vacaville</p>
-                        <p>Mon-Thu 10am-5pm, For enrolled students</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Summer Programs</h3>
-                        <p>Free meals June-August at schools/parks</p>
-                        <p>All youth 18 and under, No documentation needed</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mental Health -->
-            <div class="category" data-category="mental">
-                <div class="category-header" onclick="toggleCategory('mental')">
-                    <h2><span class="category-icon">🧠</span> <span class="lang-mental-title">Mental Health Services</span></h2>
-                    <span class="toggle-icon" id="toggle-mental">▼</span>
-                </div>
-                <div class="category-content" id="content-mental">
-                    <div class="service-item">
-                        <h3>Immediate Support</h3>
-                        <p><strong>Solano County Access Line</strong>: (800) 547-0495</p>
-                        <p><strong>Mobile Crisis Response</strong>: (707) 806-0866</p>
-                        <p>Crisis services 24/7; regular services Mon-Fri 8am-5pm</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Teen Rights (Age 12+)</h3>
-                        <p>Can consent to mental health counseling</p>
-                        <p>Services can be confidential from parents</p>
-                        <p>Does NOT include psychiatric medications</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>School-Based Services</h3>
-                        <p>47 Wellness Centers across all schools</p>
-                        <p>Free regardless of insurance/immigration status</p>
-                        <p>Contact SCOE: (707) 399-4855</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LGBTQ+ Resources -->
-            <div class="category" data-category="lgbtq">
-                <div class="category-header" onclick="toggleCategory('lgbtq')">
-                    <h2><span class="category-icon">🏳️‍🌈</span> <span class="lang-lgbtq-title">LGBTQ+ Resources</span></h2>
-                    <span class="toggle-icon" id="toggle-lgbtq">▼</span>
-                </div>
-                <div class="category-content" id="content-lgbtq">
-                    <div class="service-item">
-                        <h3>Solano Pride Center</h3>
-                        <p>1234 Empire Street, Suite 1560, Fairfield</p>
-                        <p>Phone: (707) 207-3430</p>
-                        <p><strong>Youth Programs</strong>:</p>
-                        <p>• Prism Drop-In: Ages 12-18, Tuesdays 4-6pm</p>
-                        <p>• Queerios Benicia: 4th Tuesday monthly</p>
-                        <p>• Queer & Trans Youth Vacaville</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Crisis Support</h3>
-                        <p><strong>Trevor Project</strong>: 1-866-488-7386 (24/7)</p>
-                        <p>Text START to 678-678</p>
-                        <p><strong>Trans Lifeline</strong>: (877) 565-8860</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Categories will be dynamically inserted here -->
         </div>
 
         <div class="footer">
-            <p class="lang-footer">This guide reflects services available as of 2024-2025. Programs may change.</p>
-            <p class="lang-remember">Remember: Help is available! Many services don't require parental consent.</p>
+            <p id="footer-text">This guide reflects services available as of 2024-2025. Programs may change.</p>
+            <p id="footer-remember">Remember: Help is available! Many services don't require parental consent.</p>
         </div>
     </div>
 
     <script>
-        // Language translations
+        // Complete translations with all content
         const translations = {
             en: {
                 title: "Teen Resources Guide - Solano County",
                 crisis: "🆘 CRISIS? Call 988 or text 'COURAGE' to 741741 - Available 24/7",
                 quick: "Quick Access",
                 quickDesc: "Free services for teens ages 13-18 in Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, and Rio Vista",
-                crisisTitle: "Crisis Resources (24/7)",
-                educationTitle: "Education Support Services",
-                jobsTitle: "Job Training & Employment",
-                healthTitle: "Health Services",
-                foodTitle: "Food Resources",
-                mentalTitle: "Mental Health Services",
-                lgbtqTitle: "LGBTQ+ Resources",
                 search: "Search resources...",
                 footer: "This guide reflects services available as of 2024-2025. Programs may change.",
-                remember: "Remember: Help is available! Many services don't require parental consent."
+                remember: "Remember: Help is available! Many services don't require parental consent.",
+                categories: {
+                    crisis: {
+                        title: "Crisis Resources (24/7)",
+                        icon: "🆘",
+                        services: [
+                            {
+                                title: "Mental Health Crisis",
+                                content: [
+                                    "<strong>988 Suicide & Crisis Lifeline</strong>: Call or text 988 (free, confidential, 240+ languages)",
+                                    "<strong>Solano County Mobile Crisis Unit</strong>: (707) 806-0866",
+                                    "<strong>Crisis Text Line</strong>: Text 'COURAGE' to 741741",
+                                    "<strong>Trevor Project (LGBTQ+)</strong>: 1-866-488-7386 or text START to 678-678",
+                                    "<strong>Crisis Walk-In</strong>: 2101 Courage Drive, Fairfield"
+                                ]
+                            },
+                            {
+                                title: "Emergency Services",
+                                content: [
+                                    "<strong>911</strong>: Life-threatening emergencies",
+                                    "<strong>California Youth Crisis Line</strong>: 1-800-843-5200"
+                                ]
+                            }
+                        ]
+                    },
+                    education: {
+                        title: "Education Support Services",
+                        icon: "📚",
+                        services: [
+                            {
+                                title: "Free Online Tutoring - County Wide",
+                                content: [
+                                    "<strong>Solano County Library - Brainfuse HelpNow</strong>",
+                                    "Hours: Daily 1:00 PM - 10:00 PM",
+                                    "Phone: 1-866-572-7587",
+                                    "Services: Live tutoring, 24/7 Writing Lab, test prep, homework help",
+                                    "Languages: English and Spanish tutors",
+                                    "Special: FAFSA help Mon-Thu 11:00 AM - 8:00 PM"
+                                ]
+                            },
+                            {
+                                title: "Alternative Education - SCOE",
+                                content: [
+                                    "<strong>Main Office</strong>: 5100 Business Center Drive, Fairfield",
+                                    "Phone: (707) 399-4400",
+                                    "Programs: Golden Hills Community School, Juvenile Court Schools, E2E (ages 16-24)",
+                                    "Cost: Free"
+                                ]
+                            },
+                            {
+                                title: "City-Specific Programs",
+                                content: [
+                                    "<strong>Vallejo</strong>: John Finney Educational Complex - 1347 Amador St, (707) 556-8670",
+                                    "<strong>Fairfield</strong>: Adult School - 900 Travis Road, (707) 421-4155",
+                                    "<strong>Vacaville</strong>: Boys & Girls Club - 200 Keith Way, homework help",
+                                    "<strong>Benicia</strong>: Adult School - 350 East K Street, (707) 747-8367"
+                                ]
+                            }
+                        ]
+                    },
+                    jobs: {
+                        title: "Job Training & Employment",
+                        icon: "💼",
+                        services: [
+                            {
+                                title: "Work Permits (Required under 18)",
+                                content: [
+                                    "1. Get Form B1-1 from school office",
+                                    "2. Complete with parent and employer",
+                                    "3. Submit to school for approval",
+                                    "Cost: FREE"
+                                ]
+                            },
+                            {
+                                title: "Workforce Development Board",
+                                content: [
+                                    "<strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588",
+                                    "<strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414",
+                                    "Services: Resume help, interview prep, job placement",
+                                    "Ages: 14-24, Cost: FREE"
+                                ]
+                            },
+                            {
+                                title: "Solano Community College",
+                                content: [
+                                    "Career counseling, technical training",
+                                    "Programs: Cosmetology, Aviation, Biotechnology",
+                                    "High school students can take classes"
+                                ]
+                            }
+                        ]
+                    },
+                    health: {
+                        title: "Health Services",
+                        icon: "🏥",
+                        services: [
+                            {
+                                title: "STI Testing (No parent permission needed if 12+)",
+                                content: [
+                                    "<strong>Vallejo Planned Parenthood</strong>: 365 Tuolumne St, (707) 643-4545",
+                                    "<strong>Fairfield Planned Parenthood</strong>: 1325 Travis Blvd #C, (707) 429-8855",
+                                    "<strong>Vacaville Family Health</strong>: 1119 E Monte Vista Ave, (707) 469-4640",
+                                    "All locations: Sliding scale fees, walk-ins welcome"
+                                ]
+                            },
+                            {
+                                title: "Mobile Health Unit",
+                                content: [
+                                    "Free STI testing throughout county",
+                                    "Contact: (707) 784-8600"
+                                ]
+                            }
+                        ]
+                    },
+                    food: {
+                        title: "Food Resources",
+                        icon: "🍽️",
+                        services: [
+                            {
+                                title: "Teen-Friendly (No Adult Required)",
+                                content: [
+                                    "<strong>Vallejo - Faith Food Fridays</strong>: 826 Solano Ave",
+                                    "Fridays 10am-4pm, NO requirements",
+                                    "<strong>Fairfield PAL Teen Center</strong>: TEEN-ONLY Food Pantry",
+                                    "2nd & 4th Friday, 4:30-6:30pm, Student ID required"
+                                ]
+                            },
+                            {
+                                title: "College Food Pantries",
+                                content: [
+                                    "Solano Community College - Fairfield, Vallejo, Vacaville",
+                                    "Mon-Thu 10am-5pm, For enrolled students"
+                                ]
+                            },
+                            {
+                                title: "Summer Programs",
+                                content: [
+                                    "Free meals June-August at schools/parks",
+                                    "All youth 18 and under, No documentation needed"
+                                ]
+                            }
+                        ]
+                    },
+                    mental: {
+                        title: "Mental Health Services",
+                        icon: "🧠",
+                        services: [
+                            {
+                                title: "Immediate Support",
+                                content: [
+                                    "<strong>Solano County Access Line</strong>: (800) 547-0495",
+                                    "<strong>Mobile Crisis Response</strong>: (707) 806-0866",
+                                    "Crisis services 24/7; regular services Mon-Fri 8am-5pm"
+                                ]
+                            },
+                            {
+                                title: "Teen Rights (Age 12+)",
+                                content: [
+                                    "Can consent to mental health counseling",
+                                    "Services can be confidential from parents",
+                                    "Does NOT include psychiatric medications"
+                                ]
+                            },
+                            {
+                                title: "School-Based Services",
+                                content: [
+                                    "47 Wellness Centers across all schools",
+                                    "Free regardless of insurance/immigration status",
+                                    "Contact SCOE: (707) 399-4855"
+                                ]
+                            }
+                        ]
+                    },
+                    lgbtq: {
+                        title: "LGBTQ+ Resources",
+                        icon: "🏳️‍🌈",
+                        services: [
+                            {
+                                title: "Solano Pride Center",
+                                content: [
+                                    "1234 Empire Street, Suite 1560, Fairfield",
+                                    "Phone: (707) 207-3430",
+                                    "<strong>Youth Programs</strong>:",
+                                    "• Prism Drop-In: Ages 12-18, Tuesdays 4-6pm",
+                                    "• Queerios Benicia: 4th Tuesday monthly",
+                                    "• Queer & Trans Youth Vacaville"
+                                ]
+                            },
+                            {
+                                title: "Crisis Support",
+                                content: [
+                                    "<strong>Trevor Project</strong>: 1-866-488-7386 (24/7)",
+                                    "Text START to 678-678",
+                                    "<strong>Trans Lifeline</strong>: (877) 565-8860"
+                                ]
+                            }
+                        ]
+                    }
+                }
             },
             es: {
                 title: "Guía de Recursos para Adolescentes - Condado de Solano",
                 crisis: "🆘 ¿CRISIS? Llama al 988 o envía 'COURAGE' al 741741 - Disponible 24/7",
                 quick: "Acceso Rápido",
                 quickDesc: "Servicios gratuitos para adolescentes de 13-18 años en Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City y Rio Vista",
-                crisisTitle: "Recursos de Crisis (24/7)",
-                educationTitle: "Servicios de Apoyo Educativo",
-                jobsTitle: "Capacitación Laboral y Empleo",
-                healthTitle: "Servicios de Salud",
-                foodTitle: "Recursos Alimentarios",
-                mentalTitle: "Servicios de Salud Mental",
-                lgbtqTitle: "Recursos LGBTQ+",
                 search: "Buscar recursos...",
                 footer: "Esta guía refleja los servicios disponibles a partir de 2024-2025. Los programas pueden cambiar.",
-                remember: "Recuerda: ¡Hay ayuda disponible! Muchos servicios no requieren consentimiento de los padres."
+                remember: "Recuerda: ¡Hay ayuda disponible! Muchos servicios no requieren consentimiento de los padres.",
+                categories: {
+                    crisis: {
+                        title: "Recursos de Crisis (24/7)",
+                        icon: "🆘",
+                        services: [
+                            {
+                                title: "Crisis de Salud Mental",
+                                content: [
+                                    "<strong>988 Línea de Crisis y Suicidio</strong>: Llama o envía texto al 988 (gratis, confidencial, 240+ idiomas)",
+                                    "<strong>Unidad Móvil de Crisis del Condado de Solano</strong>: (707) 806-0866",
+                                    "<strong>Línea de Texto de Crisis</strong>: Envía 'COURAGE' al 741741",
+                                    "<strong>Proyecto Trevor (LGBTQ+)</strong>: 1-866-488-7386 o envía START al 678-678",
+                                    "<strong>Centro de Crisis sin Cita</strong>: 2101 Courage Drive, Fairfield"
+                                ]
+                            },
+                            {
+                                title: "Servicios de Emergencia",
+                                content: [
+                                    "<strong>911</strong>: Emergencias que amenazan la vida",
+                                    "<strong>Línea de Crisis Juvenil de California</strong>: 1-800-843-5200"
+                                ]
+                            }
+                        ]
+                    },
+                    education: {
+                        title: "Servicios de Apoyo Educativo",
+                        icon: "📚",
+                        services: [
+                            {
+                                title: "Tutoría Gratuita en Línea - Todo el Condado",
+                                content: [
+                                    "<strong>Biblioteca del Condado de Solano - Brainfuse HelpNow</strong>",
+                                    "Horario: Diario 1:00 PM - 10:00 PM",
+                                    "Teléfono: 1-866-572-7587",
+                                    "Servicios: Tutoría en vivo, Laboratorio de Escritura 24/7, preparación de exámenes, ayuda con tareas",
+                                    "Idiomas: Tutores en inglés y español",
+                                    "Especial: Ayuda con FAFSA Lun-Jue 11:00 AM - 8:00 PM"
+                                ]
+                            },
+                            {
+                                title: "Educación Alternativa - SCOE",
+                                content: [
+                                    "<strong>Oficina Principal</strong>: 5100 Business Center Drive, Fairfield",
+                                    "Teléfono: (707) 399-4400",
+                                    "Programas: Golden Hills Community School, Escuelas del Tribunal Juvenil, E2E (edades 16-24)",
+                                    "Costo: Gratis"
+                                ]
+                            },
+                            {
+                                title: "Programas Específicos por Ciudad",
+                                content: [
+                                    "<strong>Vallejo</strong>: Complejo Educativo John Finney - 1347 Amador St, (707) 556-8670",
+                                    "<strong>Fairfield</strong>: Escuela para Adultos - 900 Travis Road, (707) 421-4155",
+                                    "<strong>Vacaville</strong>: Boys & Girls Club - 200 Keith Way, ayuda con tareas",
+                                    "<strong>Benicia</strong>: Escuela para Adultos - 350 East K Street, (707) 747-8367"
+                                ]
+                            }
+                        ]
+                    },
+                    jobs: {
+                        title: "Capacitación Laboral y Empleo",
+                        icon: "💼",
+                        services: [
+                            {
+                                title: "Permisos de Trabajo (Requerido para menores de 18)",
+                                content: [
+                                    "1. Obtén el Formulario B1-1 en la oficina de la escuela",
+                                    "2. Complétalo con tus padres y empleador",
+                                    "3. Preséntalo en la escuela para aprobación",
+                                    "Costo: GRATIS"
+                                ]
+                            },
+                            {
+                                title: "Junta de Desarrollo de la Fuerza Laboral",
+                                content: [
+                                    "<strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588",
+                                    "<strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414",
+                                    "Servicios: Ayuda con currículum, preparación para entrevistas, colocación laboral",
+                                    "Edades: 14-24, Costo: GRATIS"
+                                ]
+                            },
+                            {
+                                title: "Colegio Comunitario de Solano",
+                                content: [
+                                    "Asesoramiento profesional, capacitación técnica",
+                                    "Programas: Cosmetología, Aviación, Biotecnología",
+                                    "Los estudiantes de secundaria pueden tomar clases"
+                                ]
+                            }
+                        ]
+                    },
+                    health: {
+                        title: "Servicios de Salud",
+                        icon: "🏥",
+                        services: [
+                            {
+                                title: "Pruebas de ITS (No se necesita permiso de los padres si tienes 12+)",
+                                content: [
+                                    "<strong>Planned Parenthood de Vallejo</strong>: 365 Tuolumne St, (707) 643-4545",
+                                    "<strong>Planned Parenthood de Fairfield</strong>: 1325 Travis Blvd #C, (707) 429-8855",
+                                    "<strong>Salud Familiar de Vacaville</strong>: 1119 E Monte Vista Ave, (707) 469-4640",
+                                    "Todas las ubicaciones: Tarifas de escala móvil, se aceptan sin cita"
+                                ]
+                            },
+                            {
+                                title: "Unidad Móvil de Salud",
+                                content: [
+                                    "Pruebas gratuitas de ITS en todo el condado",
+                                    "Contacto: (707) 784-8600"
+                                ]
+                            }
+                        ]
+                    },
+                    food: {
+                        title: "Recursos Alimentarios",
+                        icon: "🍽️",
+                        services: [
+                            {
+                                title: "Amigable para Adolescentes (No se Requiere Adulto)",
+                                content: [
+                                    "<strong>Vallejo - Viernes de Comida de Fe</strong>: 826 Solano Ave",
+                                    "Viernes 10am-4pm, SIN requisitos",
+                                    "<strong>Centro Adolescente PAL de Fairfield</strong>: Despensa de Alimentos SOLO PARA ADOLESCENTES",
+                                    "2º y 4º viernes, 4:30-6:30pm, Se requiere identificación estudiantil"
+                                ]
+                            },
+                            {
+                                title: "Despensas de Alimentos Universitarias",
+                                content: [
+                                    "Colegio Comunitario de Solano - Fairfield, Vallejo, Vacaville",
+                                    "Lun-Jue 10am-5pm, Para estudiantes inscritos"
+                                ]
+                            },
+                            {
+                                title: "Programas de Verano",
+                                content: [
+                                    "Comidas gratuitas junio-agosto en escuelas/parques",
+                                    "Todos los jóvenes de 18 años o menos, No se necesita documentación"
+                                ]
+                            }
+                        ]
+                    },
+                    mental: {
+                        title: "Servicios de Salud Mental",
+                        icon: "🧠",
+                        services: [
+                            {
+                                title: "Apoyo Inmediato",
+                                content: [
+                                    "<strong>Línea de Acceso del Condado de Solano</strong>: (800) 547-0495",
+                                    "<strong>Respuesta Móvil de Crisis</strong>: (707) 806-0866",
+                                    "Servicios de crisis 24/7; servicios regulares Lun-Vie 8am-5pm"
+                                ]
+                            },
+                            {
+                                title: "Derechos de los Adolescentes (12+ años)",
+                                content: [
+                                    "Pueden consentir a consejería de salud mental",
+                                    "Los servicios pueden ser confidenciales de los padres",
+                                    "NO incluye medicamentos psiquiátricos"
+                                ]
+                            },
+                            {
+                                title: "Servicios Basados en la Escuela",
+                                content: [
+                                    "47 Centros de Bienestar en todas las escuelas",
+                                    "Gratis independientemente del seguro/estado migratorio",
+                                    "Contacto SCOE: (707) 399-4855"
+                                ]
+                            }
+                        ]
+                    },
+                    lgbtq: {
+                        title: "Recursos LGBTQ+",
+                        icon: "🏳️‍🌈",
+                        services: [
+                            {
+                                title: "Centro de Orgullo de Solano",
+                                content: [
+                                    "1234 Empire Street, Suite 1560, Fairfield",
+                                    "Teléfono: (707) 207-3430",
+                                    "<strong>Programas Juveniles</strong>:",
+                                    "• Prism Drop-In: Edades 12-18, Martes 4-6pm",
+                                    "• Queerios Benicia: 4º martes mensual",
+                                    "• Jóvenes Queer y Trans Vacaville"
+                                ]
+                            },
+                            {
+                                title: "Apoyo en Crisis",
+                                content: [
+                                    "<strong>Proyecto Trevor</strong>: 1-866-488-7386 (24/7)",
+                                    "Envía START al 678-678",
+                                    "<strong>Línea de Vida Trans</strong>: (877) 565-8860"
+                                ]
+                            }
+                        ]
+                    }
+                }
             },
             tl: {
                 title: "Gabay sa mga Mapagkukunan para sa Kabataan - Solano County",
                 crisis: "🆘 KRISIS? Tumawag sa 988 o mag-text ng 'COURAGE' sa 741741 - Bukas 24/7",
                 quick: "Mabilis na Access",
                 quickDesc: "Libreng serbisyo para sa mga kabataan edad 13-18 sa Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, at Rio Vista",
-                crisisTitle: "Mga Mapagkukunan sa Krisis (24/7)",
-                educationTitle: "Mga Serbisyo sa Suportang Pang-edukasyon",
-                jobsTitle: "Pagsasanay sa Trabaho at Empleyo",
-                healthTitle: "Mga Serbisyong Pangkalusugan",
-                foodTitle: "Mga Mapagkukunan ng Pagkain",
-                mentalTitle: "Mga Serbisyo sa Kalusugang Pangkaisipan",
-                lgbtqTitle: "Mga Mapagkukunan para sa LGBTQ+",
                 search: "Maghanap ng mga mapagkukunan...",
                 footer: "Ang gabay na ito ay sumasalamin sa mga serbisyong magagamit mula 2024-2025. Maaaring magbago ang mga programa.",
-                remember: "Tandaan: May tulong na makukuha! Maraming serbisyo ang hindi nangangailangan ng pahintulot ng magulang."
+                remember: "Tandaan: May tulong na makukuha! Maraming serbisyo ang hindi nangangailangan ng pahintulot ng magulang.",
+                categories: {
+                    crisis: {
+                        title: "Mga Mapagkukunan sa Krisis (24/7)",
+                        icon: "🆘",
+                        services: [
+                            {
+                                title: "Krisis sa Kalusugang Pangkaisipan",
+                                content: [
+                                    "<strong>988 Suicide & Crisis Lifeline</strong>: Tumawag o mag-text sa 988 (libre, kumpidensyal, 240+ wika)",
+                                    "<strong>Solano County Mobile Crisis Unit</strong>: (707) 806-0866",
+                                    "<strong>Crisis Text Line</strong>: Mag-text ng 'COURAGE' sa 741741",
+                                    "<strong>Trevor Project (LGBTQ+)</strong>: 1-866-488-7386 o mag-text ng START sa 678-678",
+                                    "<strong>Crisis Walk-In</strong>: 2101 Courage Drive, Fairfield"
+                                ]
+                            },
+                            {
+                                title: "Mga Serbisyo sa Emergency",
+                                content: [
+                                    "<strong>911</strong>: Mga emergency na nakakaapekto sa buhay",
+                                    "<strong>California Youth Crisis Line</strong>: 1-800-843-5200"
+                                ]
+                            }
+                        ]
+                    },
+                    education: {
+                        title: "Mga Serbisyo sa Suportang Pang-edukasyon",
+                        icon: "📚",
+                        services: [
+                            {
+                                title: "Libreng Online Tutoring - Buong County",
+                                content: [
+                                    "<strong>Solano County Library - Brainfuse HelpNow</strong>",
+                                    "Oras: Araw-araw 1:00 PM - 10:00 PM",
+                                    "Telepono: 1-866-572-7587",
+                                    "Mga Serbisyo: Live tutoring, 24/7 Writing Lab, test prep, tulong sa takdang-aralin",
+                                    "Mga Wika: Mga tutor sa Ingles at Espanyol",
+                                    "Espesyal: Tulong sa FAFSA Lun-Huwe 11:00 AM - 8:00 PM"
+                                ]
+                            },
+                            {
+                                title: "Alternatibong Edukasyon - SCOE",
+                                content: [
+                                    "<strong>Pangunahing Opisina</strong>: 5100 Business Center Drive, Fairfield",
+                                    "Telepono: (707) 399-4400",
+                                    "Mga Programa: Golden Hills Community School, Juvenile Court Schools, E2E (edad 16-24)",
+                                    "Bayad: Libre"
+                                ]
+                            },
+                            {
+                                title: "Mga Programa sa Bawat Siyudad",
+                                content: [
+                                    "<strong>Vallejo</strong>: John Finney Educational Complex - 1347 Amador St, (707) 556-8670",
+                                    "<strong>Fairfield</strong>: Adult School - 900 Travis Road, (707) 421-4155",
+                                    "<strong>Vacaville</strong>: Boys & Girls Club - 200 Keith Way, tulong sa takdang-aralin",
+                                    "<strong>Benicia</strong>: Adult School - 350 East K Street, (707) 747-8367"
+                                ]
+                            }
+                        ]
+                    },
+                    jobs: {
+                        title: "Pagsasanay sa Trabaho at Empleyo",
+                        icon: "💼",
+                        services: [
+                            {
+                                title: "Mga Permit sa Trabaho (Kailangan kung wala pang 18)",
+                                content: [
+                                    "1. Kunin ang Form B1-1 mula sa opisina ng paaralan",
+                                    "2. Kumpletuhin kasama ang magulang at employer",
+                                    "3. Isumite sa paaralan para sa pag-apruba",
+                                    "Bayad: LIBRE"
+                                ]
+                            },
+                            {
+                                title: "Workforce Development Board",
+                                content: [
+                                    "<strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588",
+                                    "<strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414",
+                                    "Mga Serbisyo: Tulong sa resume, paghahanda sa interview, job placement",
+                                    "Edad: 14-24, Bayad: LIBRE"
+                                ]
+                            },
+                            {
+                                title: "Solano Community College",
+                                content: [
+                                    "Career counseling, technical training",
+                                    "Mga Programa: Cosmetology, Aviation, Biotechnology",
+                                    "Maaaring kumuha ng klase ang mga high school students"
+                                ]
+                            }
+                        ]
+                    },
+                    health: {
+                        title: "Mga Serbisyong Pangkalusugan",
+                        icon: "🏥",
+                        services: [
+                            {
+                                title: "STI Testing (Hindi kailangan ng pahintulot ng magulang kung 12+)",
+                                content: [
+                                    "<strong>Vallejo Planned Parenthood</strong>: 365 Tuolumne St, (707) 643-4545",
+                                    "<strong>Fairfield Planned Parenthood</strong>: 1325 Travis Blvd #C, (707) 429-8855",
+                                    "<strong>Vacaville Family Health</strong>: 1119 E Monte Vista Ave, (707) 469-4640",
+                                    "Lahat ng lokasyon: Sliding scale fees, tanggap ang walk-ins"
+                                ]
+                            },
+                            {
+                                title: "Mobile Health Unit",
+                                content: [
+                                    "Libreng STI testing sa buong county",
+                                    "Kontak: (707) 784-8600"
+                                ]
+                            }
+                        ]
+                    },
+                    food: {
+                        title: "Mga Mapagkukunan ng Pagkain",
+                        icon: "🍽️",
+                        services: [
+                            {
+                                title: "Para sa Kabataan (Hindi Kailangan ng Matanda)",
+                                content: [
+                                    "<strong>Vallejo - Faith Food Fridays</strong>: 826 Solano Ave",
+                                    "Biyernes 10am-4pm, WALANG requirements",
+                                    "<strong>Fairfield PAL Teen Center</strong>: TEEN-ONLY Food Pantry",
+                                    "Ika-2 at ika-4 na Biyernes, 4:30-6:30pm, Kailangan ng Student ID"
+                                ]
+                            },
+                            {
+                                title: "College Food Pantries",
+                                content: [
+                                    "Solano Community College - Fairfield, Vallejo, Vacaville",
+                                    "Lun-Huwe 10am-5pm, Para sa mga naka-enroll na estudyante"
+                                ]
+                            },
+                            {
+                                title: "Mga Programa sa Tag-init",
+                                content: [
+                                    "Libreng pagkain Hunyo-Agosto sa mga paaralan/parke",
+                                    "Lahat ng kabataan 18 at pababa, Hindi kailangan ng dokumentasyon"
+                                ]
+                            }
+                        ]
+                    },
+                    mental: {
+                        title: "Mga Serbisyo sa Kalusugang Pangkaisipan",
+                        icon: "🧠",
+                        services: [
+                            {
+                                title: "Agarang Suporta",
+                                content: [
+                                    "<strong>Solano County Access Line</strong>: (800) 547-0495",
+                                    "<strong>Mobile Crisis Response</strong>: (707) 806-0866",
+                                    "Crisis services 24/7; regular services Lun-Biy 8am-5pm"
+                                ]
+                            },
+                            {
+                                title: "Karapatan ng Kabataan (Edad 12+)",
+                                content: [
+                                    "Maaaring pumayag sa mental health counseling",
+                                    "Maaaring maging kumpidensyal ang mga serbisyo mula sa magulang",
+                                    "HINDI kasama ang psychiatric medications"
+                                ]
+                            },
+                            {
+                                title: "Mga Serbisyo sa Paaralan",
+                                content: [
+                                    "47 Wellness Centers sa lahat ng paaralan",
+                                    "Libre kahit walang insurance/immigration status",
+                                    "Kontak SCOE: (707) 399-4855"
+                                ]
+                            }
+                        ]
+                    },
+                    lgbtq: {
+                        title: "Mga Mapagkukunan para sa LGBTQ+",
+                        icon: "🏳️‍🌈",
+                        services: [
+                            {
+                                title: "Solano Pride Center",
+                                content: [
+                                    "1234 Empire Street, Suite 1560, Fairfield",
+                                    "Telepono: (707) 207-3430",
+                                    "<strong>Mga Programa para sa Kabataan</strong>:",
+                                    "• Prism Drop-In: Edad 12-18, Martes 4-6pm",
+                                    "• Queerios Benicia: Ika-4 na Martes buwanan",
+                                    "• Queer & Trans Youth Vacaville"
+                                ]
+                            },
+                            {
+                                title: "Crisis Support",
+                                content: [
+                                    "<strong>Trevor Project</strong>: 1-866-488-7386 (24/7)",
+                                    "Mag-text ng START sa 678-678",
+                                    "<strong>Trans Lifeline</strong>: (877) 565-8860"
+                                ]
+                            }
+                        ]
+                    }
+                }
             },
             zh: {
                 title: "青少年资源指南 - 索拉诺县",
                 crisis: "🆘 危机？拨打988或发送'COURAGE'至741741 - 24/7全天候服务",
                 quick: "快速访问",
                 quickDesc: "为Vallejo、Fairfield、Vacaville、Benicia、Dixon、Suisun City和Rio Vista的13-18岁青少年提供免费服务",
-                crisisTitle: "危机资源（24/7）",
-                educationTitle: "教育支持服务",
-                jobsTitle: "职业培训与就业",
-                healthTitle: "健康服务",
-                foodTitle: "食物资源",
-                mentalTitle: "心理健康服务",
-                lgbtqTitle: "LGBTQ+资源",
                 search: "搜索资源...",
                 footer: "本指南反映2024-2025年可用的服务。项目可能会有变化。",
-                remember: "记住：帮助就在身边！许多服务不需要父母同意。"
+                remember: "记住：帮助就在身边！许多服务不需要父母同意。",
+                categories: {
+                    crisis: {
+                        title: "危机资源（24/7）",
+                        icon: "🆘",
+                        services: [
+                            {
+                                title: "心理健康危机",
+                                content: [
+                                    "<strong>988自杀与危机生命线</strong>：拨打或发短信至988（免费、保密、240多种语言）",
+                                    "<strong>索拉诺县流动危机小组</strong>：(707) 806-0866",
+                                    "<strong>危机短信热线</strong>：发送'COURAGE'至741741",
+                                    "<strong>特雷弗项目（LGBTQ+）</strong>：1-866-488-7386或发送START至678-678",
+                                    "<strong>危机无需预约中心</strong>：2101 Courage Drive, Fairfield"
+                                ]
+                            },
+                            {
+                                title: "紧急服务",
+                                content: [
+                                    "<strong>911</strong>：危及生命的紧急情况",
+                                    "<strong>加州青少年危机热线</strong>：1-800-843-5200"
+                                ]
+                            }
+                        ]
+                    },
+                    education: {
+                        title: "教育支持服务",
+                        icon: "📚",
+                        services: [
+                            {
+                                title: "免费在线辅导 - 全县范围",
+                                content: [
+                                    "<strong>索拉诺县图书馆 - Brainfuse HelpNow</strong>",
+                                    "时间：每天下午1:00 - 晚上10:00",
+                                    "电话：1-866-572-7587",
+                                    "服务：现场辅导、24/7写作实验室、考试准备、作业帮助",
+                                    "语言：英语和西班牙语导师",
+                                    "特别服务：FAFSA帮助 周一至周四上午11:00 - 晚上8:00"
+                                ]
+                            },
+                            {
+                                title: "替代教育 - SCOE",
+                                content: [
+                                    "<strong>主办公室</strong>：5100 Business Center Drive, Fairfield",
+                                    "电话：(707) 399-4400",
+                                    "项目：Golden Hills社区学校、少年法庭学校、E2E（16-24岁）",
+                                    "费用：免费"
+                                ]
+                            },
+                            {
+                                title: "城市特定项目",
+                                content: [
+                                    "<strong>Vallejo</strong>：John Finney教育综合体 - 1347 Amador St, (707) 556-8670",
+                                    "<strong>Fairfield</strong>：成人学校 - 900 Travis Road, (707) 421-4155",
+                                    "<strong>Vacaville</strong>：男孩女孩俱乐部 - 200 Keith Way，作业帮助",
+                                    "<strong>Benicia</strong>：成人学校 - 350 East K Street, (707) 747-8367"
+                                ]
+                            }
+                        ]
+                    },
+                    jobs: {
+                        title: "职业培训与就业",
+                        icon: "💼",
+                        services: [
+                            {
+                                title: "工作许可证（18岁以下必需）",
+                                content: [
+                                    "1. 从学校办公室获取B1-1表格",
+                                    "2. 与父母和雇主一起填写",
+                                    "3. 提交给学校批准",
+                                    "费用：免费"
+                                ]
+                            },
+                            {
+                                title: "劳动力发展委员会",
+                                content: [
+                                    "<strong>Fairfield</strong>：500 Chadbourne Road, Suite A, (707) 863-3588",
+                                    "<strong>Vallejo</strong>：1440 Marin Street, (707) 419-7414",
+                                    "服务：简历帮助、面试准备、工作安置",
+                                    "年龄：14-24岁，费用：免费"
+                                ]
+                            },
+                            {
+                                title: "索拉诺社区学院",
+                                content: [
+                                    "职业咨询、技术培训",
+                                    "项目：美容、航空、生物技术",
+                                    "高中生可以参加课程"
+                                ]
+                            }
+                        ]
+                    },
+                    health: {
+                        title: "健康服务",
+                        icon: "🏥",
+                        services: [
+                            {
+                                title: "性传播感染检测（12岁以上无需父母许可）",
+                                content: [
+                                    "<strong>Vallejo计划生育</strong>：365 Tuolumne St, (707) 643-4545",
+                                    "<strong>Fairfield计划生育</strong>：1325 Travis Blvd #C, (707) 429-8855",
+                                    "<strong>Vacaville家庭健康</strong>：1119 E Monte Vista Ave, (707) 469-4640",
+                                    "所有地点：浮动收费标准，欢迎无预约就诊"
+                                ]
+                            },
+                            {
+                                title: "流动健康单位",
+                                content: [
+                                    "全县免费性传播感染检测",
+                                    "联系电话：(707) 784-8600"
+                                ]
+                            }
+                        ]
+                    },
+                    food: {
+                        title: "食物资源",
+                        icon: "🍽️",
+                        services: [
+                            {
+                                title: "青少年友好（无需成人陪同）",
+                                content: [
+                                    "<strong>Vallejo - 信仰食物星期五</strong>：826 Solano Ave",
+                                    "星期五上午10点-下午4点，无需任何条件",
+                                    "<strong>Fairfield PAL青少年中心</strong>：仅限青少年的食品储藏室",
+                                    "第2和第4个星期五，下午4:30-6:30，需要学生证"
+                                ]
+                            },
+                            {
+                                title: "大学食品储藏室",
+                                content: [
+                                    "索拉诺社区学院 - Fairfield、Vallejo、Vacaville",
+                                    "周一至周四上午10点-下午5点，仅限注册学生"
+                                ]
+                            },
+                            {
+                                title: "夏季项目",
+                                content: [
+                                    "6月至8月在学校/公园提供免费餐食",
+                                    "所有18岁及以下青少年，无需文件证明"
+                                ]
+                            }
+                        ]
+                    },
+                    mental: {
+                        title: "心理健康服务",
+                        icon: "🧠",
+                        services: [
+                            {
+                                title: "即时支持",
+                                content: [
+                                    "<strong>索拉诺县访问热线</strong>：(800) 547-0495",
+                                    "<strong>流动危机响应</strong>：(707) 806-0866",
+                                    "危机服务24/7；常规服务周一至周五上午8点-下午5点"
+                                ]
+                            },
+                            {
+                                title: "青少年权利（12岁以上）",
+                                content: [
+                                    "可以同意接受心理健康咨询",
+                                    "服务可以对父母保密",
+                                    "不包括精神科药物"
+                                ]
+                            },
+                            {
+                                title: "学校服务",
+                                content: [
+                                    "所有学校共47个健康中心",
+                                    "不论保险/移民身份均免费",
+                                    "联系SCOE：(707) 399-4855"
+                                ]
+                            }
+                        ]
+                    },
+                    lgbtq: {
+                        title: "LGBTQ+资源",
+                        icon: "🏳️‍🌈",
+                        services: [
+                            {
+                                title: "索拉诺骄傲中心",
+                                content: [
+                                    "1234 Empire Street, Suite 1560, Fairfield",
+                                    "电话：(707) 207-3430",
+                                    "<strong>青少年项目</strong>：",
+                                    "• Prism Drop-In：12-18岁，星期二下午4-6点",
+                                    "• Queerios Benicia：每月第4个星期二",
+                                    "• Queer & Trans Youth Vacaville"
+                                ]
+                            },
+                            {
+                                title: "危机支持",
+                                content: [
+                                    "<strong>特雷弗项目</strong>：1-866-488-7386（24/7）",
+                                    "发送START至678-678",
+                                    "<strong>跨性别生命线</strong>：(877) 565-8860"
+                                ]
+                            }
+                        ]
+                    }
+                }
             },
             fa: {
                 title: "راهنمای منابع نوجوانان - شهرستان سولانو",
                 crisis: "🆘 بحران؟ با 988 تماس بگیرید یا 'COURAGE' را به 741741 پیامک کنید - 24/7 در دسترس",
                 quick: "دسترسی سریع",
                 quickDesc: "خدمات رایگان برای نوجوانان 13-18 ساله در Vallejo، Fairfield، Vacaville، Benicia، Dixon، Suisun City و Rio Vista",
-                crisisTitle: "منابع بحران (24/7)",
-                educationTitle: "خدمات پشتیبانی آموزشی",
-                jobsTitle: "آموزش شغلی و اشتغال",
-                healthTitle: "خدمات بهداشتی",
-                foodTitle: "منابع غذایی",
-                mentalTitle: "خدمات بهداشت روان",
-                lgbtqTitle: "منابع LGBTQ+",
                 search: "جستجوی منابع...",
                 footer: "این راهنما خدمات موجود از 2024-2025 را نشان می‌دهد. برنامه‌ها ممکن است تغییر کنند.",
-                remember: "به یاد داشته باشید: کمک در دسترس است! بسیاری از خدمات نیاز به رضایت والدین ندارند."
+                remember: "به یاد داشته باشید: کمک در دسترس است! بسیاری از خدمات نیاز به رضایت والدین ندارند.",
+                categories: {
+                    crisis: {
+                        title: "منابع بحران (24/7)",
+                        icon: "🆘",
+                        services: [
+                            {
+                                title: "بحران سلامت روان",
+                                content: [
+                                    "<strong>خط بحران و خودکشی 988</strong>: تماس یا پیامک به 988 (رایگان، محرمانه، بیش از 240 زبان)",
+                                    "<strong>واحد بحران سیار شهرستان سولانو</strong>: (707) 806-0866",
+                                    "<strong>خط پیامک بحران</strong>: 'COURAGE' را به 741741 پیامک کنید",
+                                    "<strong>پروژه ترور (LGBTQ+)</strong>: 1-866-488-7386 یا START را به 678-678 پیامک کنید",
+                                    "<strong>مرکز بحران بدون نوبت</strong>: 2101 Courage Drive, Fairfield"
+                                ]
+                            },
+                            {
+                                title: "خدمات اورژانس",
+                                content: [
+                                    "<strong>911</strong>: اورژانس‌های تهدیدکننده زندگی",
+                                    "<strong>خط بحران جوانان کالیفرنیا</strong>: 1-800-843-5200"
+                                ]
+                            }
+                        ]
+                    },
+                    education: {
+                        title: "خدمات پشتیبانی آموزشی",
+                        icon: "📚",
+                        services: [
+                            {
+                                title: "آموزش آنلاین رایگان - سراسر شهرستان",
+                                content: [
+                                    "<strong>کتابخانه شهرستان سولانو - Brainfuse HelpNow</strong>",
+                                    "ساعات: روزانه 1:00 بعد از ظهر - 10:00 شب",
+                                    "تلفن: 1-866-572-7587",
+                                    "خدمات: آموزش زنده، آزمایشگاه نوشتن 24/7، آمادگی آزمون، کمک تکالیف",
+                                    "زبان‌ها: مربیان انگلیسی و اسپانیایی",
+                                    "ویژه: کمک FAFSA دوشنبه تا پنجشنبه 11:00 صبح - 8:00 شب"
+                                ]
+                            },
+                            {
+                                title: "آموزش جایگزین - SCOE",
+                                content: [
+                                    "<strong>دفتر اصلی</strong>: 5100 Business Center Drive, Fairfield",
+                                    "تلفن: (707) 399-4400",
+                                    "برنامه‌ها: مدرسه اجتماعی Golden Hills، مدارس دادگاه نوجوانان، E2E (سنین 16-24)",
+                                    "هزینه: رایگان"
+                                ]
+                            },
+                            {
+                                title: "برنامه‌های ویژه شهر",
+                                content: [
+                                    "<strong>Vallejo</strong>: مجتمع آموزشی John Finney - 1347 Amador St, (707) 556-8670",
+                                    "<strong>Fairfield</strong>: مدرسه بزرگسالان - 900 Travis Road, (707) 421-4155",
+                                    "<strong>Vacaville</strong>: باشگاه پسران و دختران - 200 Keith Way، کمک تکالیف",
+                                    "<strong>Benicia</strong>: مدرسه بزرگسالان - 350 East K Street, (707) 747-8367"
+                                ]
+                            }
+                        ]
+                    },
+                    jobs: {
+                        title: "آموزش شغلی و اشتغال",
+                        icon: "💼",
+                        services: [
+                            {
+                                title: "مجوز کار (الزامی زیر 18 سال)",
+                                content: [
+                                    "1. فرم B1-1 را از دفتر مدرسه دریافت کنید",
+                                    "2. با والدین و کارفرما تکمیل کنید",
+                                    "3. برای تأیید به مدرسه تحویل دهید",
+                                    "هزینه: رایگان"
+                                ]
+                            },
+                            {
+                                title: "هیئت توسعه نیروی کار",
+                                content: [
+                                    "<strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588",
+                                    "<strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414",
+                                    "خدمات: کمک رزومه، آمادگی مصاحبه، کاریابی",
+                                    "سنین: 14-24، هزینه: رایگان"
+                                ]
+                            },
+                            {
+                                title: "کالج اجتماعی سولانو",
+                                content: [
+                                    "مشاوره شغلی، آموزش فنی",
+                                    "برنامه‌ها: آرایشگری، هوانوردی، بیوتکنولوژی",
+                                    "دانش‌آموزان دبیرستان می‌توانند در کلاس‌ها شرکت کنند"
+                                ]
+                            }
+                        ]
+                    },
+                    health: {
+                        title: "خدمات بهداشتی",
+                        icon: "🏥",
+                        services: [
+                            {
+                                title: "آزمایش STI (نیاز به اجازه والدین نیست اگر 12+ سال)",
+                                content: [
+                                    "<strong>Planned Parenthood Vallejo</strong>: 365 Tuolumne St, (707) 643-4545",
+                                    "<strong>Planned Parenthood Fairfield</strong>: 1325 Travis Blvd #C, (707) 429-8855",
+                                    "<strong>بهداشت خانواده Vacaville</strong>: 1119 E Monte Vista Ave, (707) 469-4640",
+                                    "همه مکان‌ها: هزینه‌های متغیر، پذیرش بدون نوبت"
+                                ]
+                            },
+                            {
+                                title: "واحد بهداشت سیار",
+                                content: [
+                                    "آزمایش رایگان STI در سراسر شهرستان",
+                                    "تماس: (707) 784-8600"
+                                ]
+                            }
+                        ]
+                    },
+                    food: {
+                        title: "منابع غذایی",
+                        icon: "🍽️",
+                        services: [
+                            {
+                                title: "دوستدار نوجوان (نیاز به بزرگسال نیست)",
+                                content: [
+                                    "<strong>Vallejo - جمعه‌های غذای ایمان</strong>: 826 Solano Ave",
+                                    "جمعه‌ها 10 صبح تا 4 بعد از ظهر، بدون الزامات",
+                                    "<strong>مرکز نوجوانان PAL Fairfield</strong>: انبار غذا فقط برای نوجوانان",
+                                    "جمعه دوم و چهارم، 4:30-6:30 بعد از ظهر، نیاز به کارت دانش‌آموزی"
+                                ]
+                            },
+                            {
+                                title: "انبارهای غذای کالج",
+                                content: [
+                                    "کالج اجتماعی سولانو - Fairfield، Vallejo، Vacaville",
+                                    "دوشنبه تا پنجشنبه 10 صبح تا 5 بعد از ظهر، برای دانشجویان ثبت‌نام شده"
+                                ]
+                            },
+                            {
+                                title: "برنامه‌های تابستانی",
+                                content: [
+                                    "وعده‌های غذایی رایگان ژوئن تا آگوست در مدارس/پارک‌ها",
+                                    "همه جوانان 18 سال و کمتر، نیاز به مدارک نیست"
+                                ]
+                            }
+                        ]
+                    },
+                    mental: {
+                        title: "خدمات بهداشت روان",
+                        icon: "🧠",
+                        services: [
+                            {
+                                title: "پشتیبانی فوری",
+                                content: [
+                                    "<strong>خط دسترسی شهرستان سولانو</strong>: (800) 547-0495",
+                                    "<strong>پاسخ بحران سیار</strong>: (707) 806-0866",
+                                    "خدمات بحران 24/7؛ خدمات عادی دوشنبه تا جمعه 8 صبح تا 5 بعد از ظهر"
+                                ]
+                            },
+                            {
+                                title: "حقوق نوجوانان (سن 12+)",
+                                content: [
+                                    "می‌توانند به مشاوره سلامت روان رضایت دهند",
+                                    "خدمات می‌تواند از والدین محرمانه باشد",
+                                    "شامل داروهای روانپزشکی نمی‌شود"
+                                ]
+                            },
+                            {
+                                title: "خدمات مبتنی بر مدرسه",
+                                content: [
+                                    "47 مرکز سلامت در تمام مدارس",
+                                    "رایگان صرف نظر از بیمه/وضعیت مهاجرت",
+                                    "تماس SCOE: (707) 399-4855"
+                                ]
+                            }
+                        ]
+                    },
+                    lgbtq: {
+                        title: "منابع LGBTQ+",
+                        icon: "🏳️‍🌈",
+                        services: [
+                            {
+                                title: "مرکز افتخار سولانو",
+                                content: [
+                                    "1234 Empire Street, Suite 1560, Fairfield",
+                                    "تلفن: (707) 207-3430",
+                                    "<strong>برنامه‌های جوانان</strong>:",
+                                    "• Prism Drop-In: سنین 12-18، سه‌شنبه‌ها 4-6 بعد از ظهر",
+                                    "• Queerios Benicia: سه‌شنبه چهارم ماهانه",
+                                    "• جوانان Queer و Trans Vacaville"
+                                ]
+                            },
+                            {
+                                title: "پشتیبانی بحران",
+                                content: [
+                                    "<strong>پروژه ترور</strong>: 1-866-488-7386 (24/7)",
+                                    "START را به 678-678 پیامک کنید",
+                                    "<strong>خط زندگی ترنس</strong>: (877) 565-8860"
+                                ]
+                            }
+                        ]
+                    }
+                }
             }
         };
 
@@ -538,25 +1311,64 @@
             }
         }
 
+        // Render categories
+        function renderCategories() {
+            const container = document.getElementById('categories');
+            container.innerHTML = '';
+            
+            const trans = translations[currentLang];
+            
+            Object.keys(trans.categories).forEach(categoryKey => {
+                const category = trans.categories[categoryKey];
+                
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+                categoryDiv.setAttribute('data-category', categoryKey);
+                
+                const headerHtml = `
+                    <div class="category-header" onclick="toggleCategory('${categoryKey}')">
+                        <h2><span class="category-icon">${category.icon}</span> <span>${category.title}</span></h2>
+                        <span class="toggle-icon" id="toggle-${categoryKey}">▼</span>
+                    </div>
+                `;
+                
+                let servicesHtml = '<div class="category-content" id="content-' + categoryKey + '">';
+                
+                category.services.forEach(service => {
+                    servicesHtml += '<div class="service-item">';
+                    servicesHtml += '<h3>' + service.title + '</h3>';
+                    service.content.forEach(line => {
+                        servicesHtml += '<p>' + line + '</p>';
+                    });
+                    servicesHtml += '</div>';
+                });
+                
+                servicesHtml += '</div>';
+                
+                categoryDiv.innerHTML = headerHtml + servicesHtml;
+                container.appendChild(categoryDiv);
+            });
+        }
+
         // Change language
         function changeLanguage(lang) {
             currentLang = lang;
             const trans = translations[lang];
             
-            document.querySelector('.lang-title').textContent = trans.title;
-            document.querySelector('.lang-crisis').textContent = trans.crisis;
-            document.querySelector('.lang-quick').textContent = trans.quick;
-            document.querySelector('.lang-quick-desc').textContent = trans.quickDesc;
-            document.querySelector('.lang-crisis-title').textContent = trans.crisisTitle;
-            document.querySelector('.lang-education-title').textContent = trans.educationTitle;
-            document.querySelector('.lang-jobs-title').textContent = trans.jobsTitle;
-            document.querySelector('.lang-health-title').textContent = trans.healthTitle;
-            document.querySelector('.lang-food-title').textContent = trans.foodTitle;
-            document.querySelector('.lang-mental-title').textContent = trans.mentalTitle;
-            document.querySelector('.lang-lgbtq-title').textContent = trans.lgbtqTitle;
-            document.querySelector('.lang-footer').textContent = trans.footer;
-            document.querySelector('.lang-remember').textContent = trans.remember;
+            // Update static text
+            document.getElementById('page-title').textContent = trans.title;
+            document.getElementById('crisis-banner').innerHTML = trans.crisis;
+            document.getElementById('quick-title').textContent = trans.quick;
+            document.getElementById('quick-desc').textContent = trans.quickDesc;
+            document.getElementById('footer-text').textContent = trans.footer;
+            document.getElementById('footer-remember').textContent = trans.remember;
             document.getElementById('searchBox').placeholder = trans.search;
+            
+            // Render categories with new language
+            renderCategories();
+            
+            // Clear search
+            document.getElementById('searchBox').value = '';
         }
 
         // Search functionality
