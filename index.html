@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teen Resources - Solano County</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        .lang-selector {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .lang-selector option {
+            background: #667eea;
+            color: white;
+        }
+
+        .quick-access {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .crisis-banner {
+            background: #ff4444;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .crisis-banner a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .category {
+            background: white;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: #f8f9fa;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .category-header:hover {
+            background: #e9ecef;
+        }
+
+        .category-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-icon {
+            font-size: 24px;
+        }
+
+        .toggle-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .category-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .category-content.show {
+            max-height: 2000px;
+            padding: 20px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .service-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .service-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            margin: 5px 0;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            background: white;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="lang-title">Teen Resources Guide - Solano County</h1>
+            <div class="controls">
+                <input type="text" class="search-box" placeholder="Search resources..." id="searchBox">
+                <select class="lang-selector" id="langSelector">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="tl">Tagalog</option>
+                    <option value="zh">中文</option>
+                    <option value="fa">فارسی</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="crisis-banner">
+            <span class="lang-crisis">🆘 CRISIS? Call 988 or text "COURAGE" to 741741 - Available 24/7</span>
+        </div>
+
+        <div class="quick-access">
+            <h3 class="lang-quick">Quick Access</h3>
+            <p class="lang-quick-desc">Free services for teens ages 13-18 in Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, and Rio Vista</p>
+        </div>
+
+        <div id="categories">
+            <!-- Crisis Resources -->
+            <div class="category" data-category="crisis">
+                <div class="category-header" onclick="toggleCategory('crisis')">
+                    <h2><span class="category-icon">🆘</span> <span class="lang-crisis-title">Crisis Resources (24/7)</span></h2>
+                    <span class="toggle-icon" id="toggle-crisis">▼</span>
+                </div>
+                <div class="category-content" id="content-crisis">
+                    <div class="service-item">
+                        <h3>Mental Health Crisis</h3>
+                        <p><strong>988 Suicide & Crisis Lifeline</strong>: Call or text 988 (free, confidential, 240+ languages)</p>
+                        <p><strong>Solano County Mobile Crisis Unit</strong>: (707) 806-0866</p>
+                        <p><strong>Crisis Text Line</strong>: Text "COURAGE" to 741741</p>
+                        <p><strong>Trevor Project (LGBTQ+)</strong>: 1-866-488-7386 or text START to 678-678</p>
+                        <p><strong>Crisis Walk-In</strong>: 2101 Courage Drive, Fairfield</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Emergency Services</h3>
+                        <p><strong>911</strong>: Life-threatening emergencies</p>
+                        <p><strong>California Youth Crisis Line</strong>: 1-800-843-5200</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Support -->
+            <div class="category" data-category="education">
+                <div class="category-header" onclick="toggleCategory('education')">
+                    <h2><span class="category-icon">📚</span> <span class="lang-education-title">Education Support Services</span></h2>
+                    <span class="toggle-icon" id="toggle-education">▼</span>
+                </div>
+                <div class="category-content" id="content-education">
+                    <div class="service-item">
+                        <h3>Free Online Tutoring - County Wide</h3>
+                        <p><strong>Solano County Library - Brainfuse HelpNow</strong></p>
+                        <p>Hours: Daily 1:00 PM - 10:00 PM</p>
+                        <p>Phone: 1-866-572-7587</p>
+                        <p>Services: Live tutoring, 24/7 Writing Lab, test prep, homework help</p>
+                        <p>Languages: English and Spanish tutors</p>
+                        <p>Special: FAFSA help Mon-Thu 11:00 AM - 8:00 PM</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Alternative Education - SCOE</h3>
+                        <p><strong>Main Office</strong>: 5100 Business Center Drive, Fairfield</p>
+                        <p>Phone: (707) 399-4400</p>
+                        <p>Programs: Golden Hills Community School, Juvenile Court Schools, E2E (ages 16-24)</p>
+                        <p>Cost: Free</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>City-Specific Programs</h3>
+                        <p><strong>Vallejo</strong>: John Finney Educational Complex - 1347 Amador St, (707) 556-8670</p>
+                        <p><strong>Fairfield</strong>: Adult School - 900 Travis Road, (707) 421-4155</p>
+                        <p><strong>Vacaville</strong>: Boys & Girls Club - 200 Keith Way, homework help</p>
+                        <p><strong>Benicia</strong>: Adult School - 350 East K Street, (707) 747-8367</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Training -->
+            <div class="category" data-category="jobs">
+                <div class="category-header" onclick="toggleCategory('jobs')">
+                    <h2><span class="category-icon">💼</span> <span class="lang-jobs-title">Job Training & Employment</span></h2>
+                    <span class="toggle-icon" id="toggle-jobs">▼</span>
+                </div>
+                <div class="category-content" id="content-jobs">
+                    <div class="service-item">
+                        <h3>Work Permits (Required under 18)</h3>
+                        <p>1. Get Form B1-1 from school office</p>
+                        <p>2. Complete with parent and employer</p>
+                        <p>3. Submit to school for approval</p>
+                        <p>Cost: FREE</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Workforce Development Board</h3>
+                        <p><strong>Fairfield</strong>: 500 Chadbourne Road, Suite A, (707) 863-3588</p>
+                        <p><strong>Vallejo</strong>: 1440 Marin Street, (707) 419-7414</p>
+                        <p>Services: Resume help, interview prep, job placement</p>
+                        <p>Ages: 14-24, Cost: FREE</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Solano Community College</h3>
+                        <p>Career counseling, technical training</p>
+                        <p>Programs: Cosmetology, Aviation, Biotechnology</p>
+                        <p>High school students can take classes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Services -->
+            <div class="category" data-category="health">
+                <div class="category-header" onclick="toggleCategory('health')">
+                    <h2><span class="category-icon">🏥</span> <span class="lang-health-title">Health Services</span></h2>
+                    <span class="toggle-icon" id="toggle-health">▼</span>
+                </div>
+                <div class="category-content" id="content-health">
+                    <div class="service-item">
+                        <h3>STI Testing (No parent permission needed if 12+)</h3>
+                        <p><strong>Vallejo Planned Parenthood</strong>: 365 Tuolumne St, (707) 643-4545</p>
+                        <p><strong>Fairfield Planned Parenthood</strong>: 1325 Travis Blvd #C, (707) 429-8855</p>
+                        <p><strong>Vacaville Family Health</strong>: 1119 E Monte Vista Ave, (707) 469-4640</p>
+                        <p>All locations: Sliding scale fees, walk-ins welcome</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Mobile Health Unit</h3>
+                        <p>Free STI testing throughout county</p>
+                        <p>Contact: (707) 784-8600</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Resources -->
+            <div class="category" data-category="food">
+                <div class="category-header" onclick="toggleCategory('food')">
+                    <h2><span class="category-icon">🍽️</span> <span class="lang-food-title">Food Resources</span></h2>
+                    <span class="toggle-icon" id="toggle-food">▼</span>
+                </div>
+                <div class="category-content" id="content-food">
+                    <div class="service-item">
+                        <h3>Teen-Friendly (No Adult Required)</h3>
+                        <p><strong>Vallejo - Faith Food Fridays</strong>: 826 Solano Ave</p>
+                        <p>Fridays 10am-4pm, NO requirements</p>
+                        <p><strong>Fairfield PAL Teen Center</strong>: TEEN-ONLY Food Pantry</p>
+                        <p>2nd & 4th Friday, 4:30-6:30pm, Student ID required</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>College Food Pantries</h3>
+                        <p>Solano Community College - Fairfield, Vallejo, Vacaville</p>
+                        <p>Mon-Thu 10am-5pm, For enrolled students</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Summer Programs</h3>
+                        <p>Free meals June-August at schools/parks</p>
+                        <p>All youth 18 and under, No documentation needed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mental Health -->
+            <div class="category" data-category="mental">
+                <div class="category-header" onclick="toggleCategory('mental')">
+                    <h2><span class="category-icon">🧠</span> <span class="lang-mental-title">Mental Health Services</span></h2>
+                    <span class="toggle-icon" id="toggle-mental">▼</span>
+                </div>
+                <div class="category-content" id="content-mental">
+                    <div class="service-item">
+                        <h3>Immediate Support</h3>
+                        <p><strong>Solano County Access Line</strong>: (800) 547-0495</p>
+                        <p><strong>Mobile Crisis Response</strong>: (707) 806-0866</p>
+                        <p>Crisis services 24/7; regular services Mon-Fri 8am-5pm</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Teen Rights (Age 12+)</h3>
+                        <p>Can consent to mental health counseling</p>
+                        <p>Services can be confidential from parents</p>
+                        <p>Does NOT include psychiatric medications</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>School-Based Services</h3>
+                        <p>47 Wellness Centers across all schools</p>
+                        <p>Free regardless of insurance/immigration status</p>
+                        <p>Contact SCOE: (707) 399-4855</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LGBTQ+ Resources -->
+            <div class="category" data-category="lgbtq">
+                <div class="category-header" onclick="toggleCategory('lgbtq')">
+                    <h2><span class="category-icon">🏳️‍🌈</span> <span class="lang-lgbtq-title">LGBTQ+ Resources</span></h2>
+                    <span class="toggle-icon" id="toggle-lgbtq">▼</span>
+                </div>
+                <div class="category-content" id="content-lgbtq">
+                    <div class="service-item">
+                        <h3>Solano Pride Center</h3>
+                        <p>1234 Empire Street, Suite 1560, Fairfield</p>
+                        <p>Phone: (707) 207-3430</p>
+                        <p><strong>Youth Programs</strong>:</p>
+                        <p>• Prism Drop-In: Ages 12-18, Tuesdays 4-6pm</p>
+                        <p>• Queerios Benicia: 4th Tuesday monthly</p>
+                        <p>• Queer & Trans Youth Vacaville</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Crisis Support</h3>
+                        <p><strong>Trevor Project</strong>: 1-866-488-7386 (24/7)</p>
+                        <p>Text START to 678-678</p>
+                        <p><strong>Trans Lifeline</strong>: (877) 565-8860</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="lang-footer">This guide reflects services available as of 2024-2025. Programs may change.</p>
+            <p class="lang-remember">Remember: Help is available! Many services don't require parental consent.</p>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                title: "Teen Resources Guide - Solano County",
+                crisis: "🆘 CRISIS? Call 988 or text 'COURAGE' to 741741 - Available 24/7",
+                quick: "Quick Access",
+                quickDesc: "Free services for teens ages 13-18 in Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, and Rio Vista",
+                crisisTitle: "Crisis Resources (24/7)",
+                educationTitle: "Education Support Services",
+                jobsTitle: "Job Training & Employment",
+                healthTitle: "Health Services",
+                foodTitle: "Food Resources",
+                mentalTitle: "Mental Health Services",
+                lgbtqTitle: "LGBTQ+ Resources",
+                search: "Search resources...",
+                footer: "This guide reflects services available as of 2024-2025. Programs may change.",
+                remember: "Remember: Help is available! Many services don't require parental consent."
+            },
+            es: {
+                title: "Guía de Recursos para Adolescentes - Condado de Solano",
+                crisis: "🆘 ¿CRISIS? Llama al 988 o envía 'COURAGE' al 741741 - Disponible 24/7",
+                quick: "Acceso Rápido",
+                quickDesc: "Servicios gratuitos para adolescentes de 13-18 años en Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City y Rio Vista",
+                crisisTitle: "Recursos de Crisis (24/7)",
+                educationTitle: "Servicios de Apoyo Educativo",
+                jobsTitle: "Capacitación Laboral y Empleo",
+                healthTitle: "Servicios de Salud",
+                foodTitle: "Recursos Alimentarios",
+                mentalTitle: "Servicios de Salud Mental",
+                lgbtqTitle: "Recursos LGBTQ+",
+                search: "Buscar recursos...",
+                footer: "Esta guía refleja los servicios disponibles a partir de 2024-2025. Los programas pueden cambiar.",
+                remember: "Recuerda: ¡Hay ayuda disponible! Muchos servicios no requieren consentimiento de los padres."
+            },
+            tl: {
+                title: "Gabay sa mga Mapagkukunan para sa Kabataan - Solano County",
+                crisis: "🆘 KRISIS? Tumawag sa 988 o mag-text ng 'COURAGE' sa 741741 - Bukas 24/7",
+                quick: "Mabilis na Access",
+                quickDesc: "Libreng serbisyo para sa mga kabataan edad 13-18 sa Vallejo, Fairfield, Vacaville, Benicia, Dixon, Suisun City, at Rio Vista",
+                crisisTitle: "Mga Mapagkukunan sa Krisis (24/7)",
+                educationTitle: "Mga Serbisyo sa Suportang Pang-edukasyon",
+                jobsTitle: "Pagsasanay sa Trabaho at Empleyo",
+                healthTitle: "Mga Serbisyong Pangkalusugan",
+                foodTitle: "Mga Mapagkukunan ng Pagkain",
+                mentalTitle: "Mga Serbisyo sa Kalusugang Pangkaisipan",
+                lgbtqTitle: "Mga Mapagkukunan para sa LGBTQ+",
+                search: "Maghanap ng mga mapagkukunan...",
+                footer: "Ang gabay na ito ay sumasalamin sa mga serbisyong magagamit mula 2024-2025. Maaaring magbago ang mga programa.",
+                remember: "Tandaan: May tulong na makukuha! Maraming serbisyo ang hindi nangangailangan ng pahintulot ng magulang."
+            },
+            zh: {
+                title: "青少年资源指南 - 索拉诺县",
+                crisis: "🆘 危机？拨打988或发送'COURAGE'至741741 - 24/7全天候服务",
+                quick: "快速访问",
+                quickDesc: "为Vallejo、Fairfield、Vacaville、Benicia、Dixon、Suisun City和Rio Vista的13-18岁青少年提供免费服务",
+                crisisTitle: "危机资源（24/7）",
+                educationTitle: "教育支持服务",
+                jobsTitle: "职业培训与就业",
+                healthTitle: "健康服务",
+                foodTitle: "食物资源",
+                mentalTitle: "心理健康服务",
+                lgbtqTitle: "LGBTQ+资源",
+                search: "搜索资源...",
+                footer: "本指南反映2024-2025年可用的服务。项目可能会有变化。",
+                remember: "记住：帮助就在身边！许多服务不需要父母同意。"
+            },
+            fa: {
+                title: "راهنمای منابع نوجوانان - شهرستان سولانو",
+                crisis: "🆘 بحران؟ با 988 تماس بگیرید یا 'COURAGE' را به 741741 پیامک کنید - 24/7 در دسترس",
+                quick: "دسترسی سریع",
+                quickDesc: "خدمات رایگان برای نوجوانان 13-18 ساله در Vallejo، Fairfield، Vacaville، Benicia، Dixon، Suisun City و Rio Vista",
+                crisisTitle: "منابع بحران (24/7)",
+                educationTitle: "خدمات پشتیبانی آموزشی",
+                jobsTitle: "آموزش شغلی و اشتغال",
+                healthTitle: "خدمات بهداشتی",
+                foodTitle: "منابع غذایی",
+                mentalTitle: "خدمات بهداشت روان",
+                lgbtqTitle: "منابع LGBTQ+",
+                search: "جستجوی منابع...",
+                footer: "این راهنما خدمات موجود از 2024-2025 را نشان می‌دهد. برنامه‌ها ممکن است تغییر کنند.",
+                remember: "به یاد داشته باشید: کمک در دسترس است! بسیاری از خدمات نیاز به رضایت والدین ندارند."
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+
+        // Toggle category visibility
+        function toggleCategory(categoryId) {
+            const content = document.getElementById('content-' + categoryId);
+            const icon = document.getElementById('toggle-' + categoryId);
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('show');
+                icon.textContent = '▲';
+            }
+        }
+
+        // Change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const trans = translations[lang];
+            
+            document.querySelector('.lang-title').textContent = trans.title;
+            document.querySelector('.lang-crisis').textContent = trans.crisis;
+            document.querySelector('.lang-quick').textContent = trans.quick;
+            document.querySelector('.lang-quick-desc').textContent = trans.quickDesc;
+            document.querySelector('.lang-crisis-title').textContent = trans.crisisTitle;
+            document.querySelector('.lang-education-title').textContent = trans.educationTitle;
+            document.querySelector('.lang-jobs-title').textContent = trans.jobsTitle;
+            document.querySelector('.lang-health-title').textContent = trans.healthTitle;
+            document.querySelector('.lang-food-title').textContent = trans.foodTitle;
+            document.querySelector('.lang-mental-title').textContent = trans.mentalTitle;
+            document.querySelector('.lang-lgbtq-title').textContent = trans.lgbtqTitle;
+            document.querySelector('.lang-footer').textContent = trans.footer;
+            document.querySelector('.lang-remember').textContent = trans.remember;
+            document.getElementById('searchBox').placeholder = trans.search;
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+            let hasResults = false;
+
+            categories.forEach(category => {
+                const content = category.textContent.toLowerCase();
+                const serviceItems = category.querySelectorAll('.service-item');
+                let categoryHasMatch = false;
+
+                serviceItems.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(searchTerm)) {
+                        item.style.display = 'block';
+                        categoryHasMatch = true;
+                        hasResults = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (categoryHasMatch || searchTerm === '') {
+                    category.style.display = 'block';
+                    if (searchTerm !== '' && categoryHasMatch) {
+                        // Auto-expand categories with matches
+                        const categoryId = category.getAttribute('data-category');
+                        const content = document.getElementById('content-' + categoryId);
+                        const icon = document.getElementById('toggle-' + categoryId);
+                        content.classList.add('show');
+                        icon.textContent = '▲';
+                    }
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+
+            // Show all if search is empty
+            if (searchTerm === '') {
+                categories.forEach(category => {
+                    category.style.display = 'block';
+                    const serviceItems = category.querySelectorAll('.service-item');
+                    serviceItems.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                });
+            }
+        }
+
+        // Event listeners
+        document.getElementById('langSelector').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        document.getElementById('searchBox').addEventListener('input', performSearch);
+
+        // Initialize
+        changeLanguage('en');
+    </script>
+</body>
+</html>
